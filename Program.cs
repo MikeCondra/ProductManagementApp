@@ -23,14 +23,23 @@ namespace ProductManagementApp
                 context.Products.Add(new Product { Name = "Laptop", Price = 999.99m });
                 if (doSave) context.SaveChanges();
 
-                // READ: Retrieve and display all products
-                Console.WriteLine("Products in the Database:");
-                var products = context.Products.ToList();
-                foreach (var product in products)
+                // READ: Retrieve and display all products again
                 {
-                    Console.WriteLine($"Product: {product.Name}, Price: {product.Price}");
+                    Console.WriteLine("Products in the Database:");
+                    var updatedProducts = context.Products.ToList();
+                    if (updatedProducts.Count == 0)
+                    {
+                        Console.WriteLine(" No products found.");
+                    }
+                    else
+                    {
+                        foreach (var product in updatedProducts)
+                        {
+                            Console.WriteLine($" Product: {product.Name}, Price: {product.Price}");
+                        }
+                    }
+                    if (doSave) context.SaveChanges();
                 }
-                if (doSave) context.SaveChanges();
 
                 // UPDATE: Update the price of the first product
                 var productToUpdate = context.Products.First();
@@ -43,13 +52,22 @@ namespace ProductManagementApp
                 if (doSave) context.SaveChanges();
 
                 // READ: Retrieve and display all products again
-                Console.WriteLine("Products in the Database:");
-                var updatedProducts = context.Products.ToList();
-                foreach (var product in updatedProducts)
                 {
-                    Console.WriteLine($"Product: {product.Name}, Price: {product.Price}");
+                    Console.WriteLine("Products in the Database:");
+                    var updatedProducts = context.Products.ToList();
+                    if (updatedProducts.Count == 0)
+                    {
+                        Console.WriteLine(" No products found.");
+                    }
+                    else
+                    {
+                        foreach (var product in updatedProducts)
+                        {
+                            Console.WriteLine($" Product: {product.Name}, Price: {product.Price}");
+                        }
+                    }
+                    if (doSave) context.SaveChanges();
                 }
-                if (doSave) context.SaveChanges();
             }
         }
     }
